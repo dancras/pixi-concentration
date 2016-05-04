@@ -1,0 +1,22 @@
+{
+  "name": "pixi-concentration",
+  "authors": [
+    "Daniel Howlett <dan@dancras.co.uk>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pixi.js": "^3.0.11"
+  }
+}

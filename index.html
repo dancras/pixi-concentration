@@ -8,7 +8,7 @@
 				padding: 0;
 			}
 		</style>
-		<script src="pixi.dev.js"></script>
+		<script src="bower_components/pixi.js/bin/pixi.js"></script>
 	</head>
 	<body>
 		<script>
@@ -18,22 +18,21 @@
 			var secondTile=null;
 			// can the player pick up a tile?
 			var canPick=true;
-			// create an new instance of a pixi stage with a grey background
-			var stage = new PIXI.Stage(0x888888);
 			// create a renderer instance width=640 height=480
 			var renderer = PIXI.autoDetectRenderer(640,480);
+			renderer.backgroundColor = 0x888888;
 			// importing a texture atlas created with texturepacker
-			var tileAtlas = ["images.json"];
 			// create a new loader
-			var loader = new PIXI.AssetLoader(tileAtlas);
+			var loader = PIXI.loader;
+			loader.add('images', 'images.json');
+
 			// create an empty container
-			var gameContainer = new PIXI.DisplayObjectContainer();
-			// add the container to the stage
-     		stage.addChild(gameContainer);
+			var gameContainer = new PIXI.Container();
+
      		// add the renderer view element to the DOM
 			document.body.appendChild(renderer.view);
 			// use callback
-			loader.onComplete = onTilesLoaded
+			loader.once('complete', onTilesLoaded);
 			//begin load
 			loader.load();	
 			function onTilesLoaded(){
@@ -126,11 +125,11 @@
 						}
 					}
 				} 
-				requestAnimFrame(animate);
+				requestAnimationFrame(animate);
 			}
 			function animate() {
-				requestAnimFrame(animate);
-				renderer.render(stage);
+				requestAnimationFrame(animate);
+				renderer.render(gameContainer);
 			}
 		</script>
 	</body>
